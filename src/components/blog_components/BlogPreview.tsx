@@ -2,6 +2,7 @@ import { getStringPart } from '@/functions/stringFunctions';
 import Blog from '@/config/interfaces/Blog.interface';
 import Image from 'next/image';
 import React from 'react'
+import MediumTitle from '../title_components/MediumTitle';
 
 interface BlogPreviewProps {
      blog: Blog;
@@ -15,8 +16,9 @@ const BlogPreview:React.FC<BlogPreviewProps> = ({blog}) => {
                <Image width={800} height={500} src={blog.image} alt={blog.title} />
           </div>
           <div className="content">
-               <h2>{blog.title}</h2>
-               <p>{getStringPart(blog.content, 5)}</p>
+               <MediumTitle title={blog.title} />
+               <p>{getStringPart(blog.content, 2)}</p>
+               <span>Published | {blog.publish_date}</span>
           </div>
      </div>
      )

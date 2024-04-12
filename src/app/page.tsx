@@ -4,6 +4,7 @@ import BlogService from "@/config/service/BlogService";
 import Blog from "@/config/interfaces/Blog.interface";
 import { useEffect, useState } from "react";
 import Page from "@/components/Page";
+import MainTitle from "@/components/title_components/MainTitle";
 
 export default function Home() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -17,7 +18,8 @@ export default function Home() {
   }, [])
   return (
     <Page>
-      <BlogsRow blogs={blogs} limit={2} title="Latest News"/>
+      <MainTitle title="Click Rwanda Blog" />
+      <BlogsRow blogs={blogs} limit={3} title="Featured Article"/>
     </Page>
   );
 }

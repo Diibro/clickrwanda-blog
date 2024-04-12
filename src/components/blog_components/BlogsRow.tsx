@@ -1,11 +1,13 @@
 'use client'
 import React from 'react';
-import BlogContainer from './BlogContainer';
 import BlogPreview from './BlogPreview';
 import Blog from '@/config/interfaces/Blog.interface';
 import Link from 'next/link';
 import BlogPreviewLoader from '../loading_components/BlogPreviewLoader';
 import BlogLoader from '../loading_components/BlogLoader';
+import SmallTitle from '../title_components/SmallTitle';
+import BlogContainerRow from './BlogContainer';
+import MediumTitle from '../title_components/MediumTitle';
 
 interface BlogsRowProps{
   blogs: Array<Blog>;
@@ -18,16 +20,17 @@ const BlogsRow: React.FC<BlogsRowProps> = ({blogs, limit, title}) => {
     <div className='blogs-row'>
     {blogs && blogs[0] ? 
     <>
-      {title ? <h1>{title}</h1> : null}
       <div className='main-blog'>
+        {title ? <MediumTitle title='Featured Article' /> : null}
         <BlogPreview blog={blogs[0]} />
       </div>
       <div className="side-blogs">
+        <MediumTitle title='Popular Articles' />
         {
-          blogs.slice(1).map((blog, index) => !limit ? <BlogContainer blog={blog} key={blog.blogId} /> : index < limit ? <BlogContainer blog={blog} key={blog.blogId} /> : null )
+          blogs.slice(1).map((blog, index) => !limit ? <BlogContainerRow blog={blog} key={blog.blogId} /> : index < limit ? <BlogContainerRow blog={blog} key={blog.blogId} /> : null )
         }
         {
-          limit ? <Link href="#">More blogs</Link> : null
+          limit ? <Link href="#">More...</Link> : null
         }
       </div>
     </>: 

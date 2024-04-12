@@ -1,24 +1,23 @@
 'use client';
 
 import Blog from '@/config/interfaces/Blog.interface';
+import BlogContainerInterface from '@/config/interfaces/BlogContainer';
 import Image from 'next/image';
 import React from 'react'
+import SmallTitle from '../title_components/SmallTitle';
 
-interface BlogContainerProps {
-     blog: Blog;
-}
-const BlogContainer: React.FC<BlogContainerProps> = ({blog}) => {
+const BlogContainerRow: React.FC<BlogContainerInterface> = ({blog}) => {
      return (
-          <div className='blog-container'>
+          <div className='blog-container-row'>
                <div className="image-container">
                     <Image width={300} height={200} src={blog.image} alt={blog.title} />
                </div>
                <div className='content'>
-                    <h3>{blog.title}</h3>
-                    <p>{blog.publish_date}</p>
+                    <p>Added on {blog.publish_date}</p>
+                    <SmallTitle title={blog.title} />
                </div>
           </div> 
      )
 }
 
-export default BlogContainer
+export default BlogContainerRow;
